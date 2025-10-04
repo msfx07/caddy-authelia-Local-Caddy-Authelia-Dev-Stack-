@@ -71,8 +71,6 @@ dist/
 # Ignore editor temporary files often created during merges/edits, but allow tracked backups/
 # keep general *.orig ignored but whitelist backups/ directory for repository-tracked backups
 *.orig
-!/backups/
-!/backups/*.orig
 
 # Terraform / infrastructure state (if added later)
 *.tfstate
@@ -82,3 +80,6 @@ dist/
 .LSOverride
 
 # End of .gitignore
+
+# Ignore backups folder entirely (do not commit local backups)
+backups/
