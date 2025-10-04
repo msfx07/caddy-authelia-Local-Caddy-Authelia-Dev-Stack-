@@ -1,7 +1,7 @@
 
 # caddy-authelia 🚦🔐
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE) [![Docker Compose](https://img.shields.io/badge/Docker%20Compose-v2-blue.svg)](https://docs.docker.com/compose/) [![Compose Valid](https://github.com/msfx07/caddy-authelia-Local-Caddy-Authelia-Dev-Stack-/actions/workflows/compose-validate.yml/badge.svg)](https://github.com/msfx07/caddy-authelia-Local-Caddy-Authelia-Dev-Stack-/actions) [![Makefile](https://img.shields.io/badge/Makefile-available-brightgreen.svg)](https://github.com/msfx07/caddy-authelia-Local-Caddy-Authelia-Dev-Stack-/actions) 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE) [![Shell](https://img.shields.io/badge/shell-Bash-blue.svg)](https://www.gnu.org/software/bash/) [![ShellCheck](https://github.com/msfx07/caddy-authelia-Local-Caddy-Authelia-Dev-Stack-/actions/workflows/shellcheck.yml/badge.svg)](https://github.com/msfx07/caddy-authelia-Local-Caddy-Authelia-Dev-Stack-/actions) [![Docker Compose](https://img.shields.io/badge/Docker%20Compose-v2-blue.svg)](https://docs.docker.com/compose/) [![Makefile](https://img.shields.io/badge/Makefile-available-brightgreen.svg)](https://github.com/msfx07/caddy-authelia-Local-Caddy-Authelia-Dev-Stack-/actions) 
 
 Lightweight local development stack combining Caddy (reverse proxy) and Authelia (authentication/authorization) managed with Docker Compose and convenience Makefile scripts. ⚙️🔒
 
