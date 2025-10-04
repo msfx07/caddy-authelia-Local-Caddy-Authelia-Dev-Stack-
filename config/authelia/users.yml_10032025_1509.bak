@@ -1,9 +1,0 @@
----
-# Authelia users database
-users:
-  admin:
-    displayname: "Admin User"
-    password: "$argon2id$v=19$m=65536,t=3,p=4$+omIMx3Z9WOdg9m8xqgofA$ov4QOqPOefT56WSW/ZVuF1Vw7cHI6JemHLtj9lwIddM"
-    email: admin@yourdomain.com
-    groups:
-      - admins
