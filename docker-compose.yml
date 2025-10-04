@@ -1,0 +1,41 @@
+---
+services:
+  caddy:
+    image: caddy:2.10.2
+    container_name: caddy
+    restart: always
+    ports:
+      - "127.0.0.1:80:80"
+      - "127.0.0.1:443:443"
+    volumes:
+      - ./site:/srv
+      - caddy_config:/etc/caddy:rw
+      - caddy_data:/data
+    networks:
+      caddy_net0:
+        ipv4_address: 10.0.1.10
+
+  authelia:
+    image: authelia/authelia:4.39.11
+    container_name: authelia
+    restart: always
+    env_file: .env
+    command: authelia --config /config/configuration.yml
+    volumes:
+      - ./config/authelia:/config
+      - authelia_data:/data
+    networks:
+      caddy_net0:
+        ipv4_address: 10.0.1.20
+
+volumes:
+  caddy_data:
+    external: true
+  caddy_config:
+    external: true
+  authelia_data:
+    external: true
+
+networks:
+  caddy_net0:
+    external: true

@@ -1,0 +1,84 @@
+# .gitignore for 120-caddy project
+# Generated and editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Vim swap files, backups, and temp
+*.swp
+*.swo
+.*.swp
+*~
+
+# VSCode
+.vscode/
+
+# Node modules (if any frontend tooling gets added)
+node_modules/
+
+# Python caches (in case scripts/tools use Python)
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Shell history and local environment files
+.env
+.env.*
+env/
+venv/
+
+# Docker
+# Ignore compose overrides and local env variants
+docker-compose.override.yml
+docker-compose.*.yml
+*.env.yml
+docker-compose.override.yaml
+
+# Docker persistent data (named volumes) are managed externally; don't track data directories
+# ignore everything inside /config/ but allow tracking of specific required files
+/data/
+/config/*
+!/config/caddy_security.conf
+!/config/authelia/
+
+# Systemd or PID files
+*.pid
+
+# Logs
+*.log
+/var/log/
+
+# Certificates (let the user manage these securely outside the repo)
+*.crt
+*.pem
+*.key
+
+# Secrets and credential files
+secrets/
+*.secret
+*.passwd
+*.p12
+
+# CI artifacts and runtime state
+.gitlab-ci.yml.local
+.cache/
+build/
+dist/
+
+# Generated Caddy runtime logs (often written to /var/log/caddy in containers)
+/var/log/caddy/
+
+# Ignore editor temporary files often created during merges/edits, but allow tracked backups/
+# keep general *.orig ignored but whitelist backups/ directory for repository-tracked backups
+*.orig
+!/backups/
+!/backups/*.orig
+
+# Terraform / infrastructure state (if added later)
+*.tfstate
+
+# macOS Finder tags
+.AppleDouble
+.LSOverride
+
+# End of .gitignore

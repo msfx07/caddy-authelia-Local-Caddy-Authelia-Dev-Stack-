@@ -1,0 +1,35 @@
+{
+	# Global options block
+	email your_email@example.com
+}
+
+# Define a reusable snippet for Authelia authentication
+(auth_authelia) {
+    forward_auth authelia:9091 {
+        uri /api/authz/forward-auth?authelia_url=https://auth0.sandbox99.local
+        copy_headers Remote-User Remote-Groups Remote-Name Remote-Email
+    }
+}
+
+https://auth0.sandbox99.local {
+	reverse_proxy authelia:9091
+
+	# Use the internal CA for local development
+	tls internal
+}
+
+https://test.sandbox99.local {
+    # Import the Authelia auth snippet
+    import auth_authelia
+
+	# Import security settings
+	import /etc/caddy/caddy_security.conf
+	
+	encode gzip
+	root * /srv
+	file_server
+	handle_errors {
+		respond "We're experiencing some behind-the-scenes drama. The curtain will rise again shortly." 500
+	}
+	tls internal
+}
