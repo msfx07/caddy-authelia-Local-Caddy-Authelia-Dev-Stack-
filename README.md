@@ -44,7 +44,7 @@ On most Linux distributions you can follow Docker's official install instruction
 
 1. Clone the repository and change into it:
 
-   git clone <your-repo-url>
+   git clone git@github.com:msfx07/caddy-authelia-Local-Caddy-Authelia-Dev-Stack-.git
    cd caddy-authelia
 
 2. Generate Authelia secrets (creates a `.env` file). DO NOT commit the `.env` file.
