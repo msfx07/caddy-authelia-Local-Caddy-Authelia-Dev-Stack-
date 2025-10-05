@@ -3,7 +3,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE) [![Shell](https://img.shields.io/badge/shell-Bash-blue.svg)](https://www.gnu.org/software/bash/) [![Docker Compose](https://img.shields.io/badge/Docker%20Compose-v2-blue.svg)](https://docs.docker.com/compose/) [![Makefile](https://img.shields.io/badge/Makefile-available-brightgreen.svg)](https://github.com/msfx07/caddy-authelia-Local-Caddy-Authelia-Dev-Stack-/actions) 
 
-Lightweight local development stack combining Caddy (reverse proxy) and Authelia (authentication/authorization) managed with Docker Compose and convenience Makefile scripts. ⚙️🔒
+Lightweight local development stack combining Caddy (reverse proxy) and Authelia (authentication/authorization) managed with Docker Compose and convenience Makefile scripts.
 
 This repository provides a ready-to-run example for running Caddy and Authelia together on a local machine using Docker. It is intended for development, testing, and learning purposes — not as a production deployment.
 
@@ -21,7 +21,7 @@ This repository provides a ready-to-run example for running Caddy and Authelia t
 
 ---
 
-## Features ✨
+## Features
 
 - Caddy as HTTPS reverse proxy (Caddyfile in repository)
 - Authelia for forward authentication (config in `config/authelia/`)
@@ -30,7 +30,9 @@ This repository provides a ready-to-run example for running Caddy and Authelia t
 
 ---
 
-## Prerequisites ✅
+## Prerequisites
+
+If you are running Windows and prefer a development VM, I recommend installing a desktop hypervisor such as VirtualBox or VMware Workstation Player and creating a Linux VM (Debian 12 or 13 are recommended). Install Docker inside the VM (or use the distribution packages) and then follow the steps below. This keeps the environment close to a typical Linux host and avoids Windows-specific Docker filesystem/permission differences.
 
 - Docker Engine (20.10+) and either Docker Compose V2 (`docker compose`) or legacy `docker-compose`
 - make
@@ -38,43 +40,58 @@ This repository provides a ready-to-run example for running Caddy and Authelia t
 
 On most Linux distributions you can follow Docker's official install instructions. This project expects Docker to be able to create an external Docker network and named volumes.
 
+
 ---
 
-## Quick start 🚀
+## Quick start
 
 1. Clone the repository and change into it:
 
+   ```sh
    git clone https://github.com/msfx07/caddy-authelia-Local-Caddy-Authelia-Dev-Stack-.git caddy-authelia && cd caddy-authelia
+   ```
 
 2. Generate Authelia secrets (creates a `.env` file). DO NOT commit the `.env` file.
 
+   ```sh
    ./scripts/gen_secrets.sh
+   ```
 
    Or use the Make target:
 
+   ```sh
    make authelia-gen-secrets
+   ```
 
 3. Build network, volumes and pull images:
 
+   ```sh
    make build
+   ```
 
 4. Add the repository's local host entries to `/etc/hosts` for the sample domains used in `Caddyfile`:
 
+   ```sh
    sudo ./scripts/add_local_hosts.sh
+   ```
 
 5. Start services:
 
+   ```sh
    make start
+   ```
 
 6. Load Caddy config file into container
 
+   ```sh
    make caddy-config-update
    make caddy-validate
+   ```
 
 7. Open a browser to the example sites (these names are used in the bundled `Caddyfile`):
 
-- https://test.sandbox99.local (example site protected by Authelia)
-- https://auth0.sandbox99.local (Authelia endpoint)
+- [https://test.sandbox99.local](https://test.sandbox99.local) (example site protected by Authelia)
+- [https://auth0.sandbox99.local](https://auth0.sandbox99.local) (Authelia endpoint)
 
 Default credentials
 
@@ -87,12 +104,13 @@ This account is provided for local development and testing only. Change or remov
 
 
 💡 Notes
+
 - The compose file expects external Docker volumes and a network named `caddy_net0`. The `make build` target runs helper scripts (`build_network.sh` and `build_storage.sh`) to create them.
 - The repository uses internal TLS (`tls internal`) for the local domains; this is suitable for development only.
 
 ---
 
-## Configuration & secrets 🔑
+## Configuration & secrets
 
 - Authelia configuration lives in `config/authelia/configuration.yml` and user data in `config/authelia/users.yml`.
 - Caddy configuration is in the repository `Caddyfile` and additional security snippets are in `config/caddy_security.conf`.
@@ -102,7 +120,7 @@ Security reminder: never commit `.env` or any real secrets into source control. 
 
 ---
 
-## Common tasks (Make targets) 🛠️
+## Common tasks (Make targets)
 
 - make build — create network and volumes, pull images
 - make start — start all services (uses `docker compose up -d`)
@@ -125,7 +143,7 @@ Example: quickly generate secrets, build and run:
 
 ---
 
-## Files of interest 📂
+## Files of interest
 
 - `docker-compose.yml` — Compose definition for `caddy` and `authelia` services
 - `Caddyfile` — main Caddy configuration used by the container
@@ -137,7 +155,7 @@ Example: quickly generate secrets, build and run:
 
 ---
 
-## Troubleshooting 🐞
+## Troubleshooting
 
 - Docker permission errors: run Make targets with `sudo` or add your user to the `docker` group.
 - If the external volumes or network are missing, run `make build` (this runs `build_network.sh` and `build_storage.sh`).
@@ -149,7 +167,7 @@ If you hit issues not documented here, open an issue with logs and a short descr
 
 ---
 
-## Contributing 🤝
+## Contributing
 
 Contributions are welcome. If you want to improve the repository:
 
@@ -161,6 +179,6 @@ Please do not include secrets or credentials in commits.
 
 ---
 
-## License 📄
+## License
 
 This project is licensed under the MIT License — see the `LICENSE` file for details.
